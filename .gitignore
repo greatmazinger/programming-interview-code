@@ -32,3 +32,6 @@ bject files
 # Vim
 .*.swp
 .*.swo
+
+# Haskell
+*.hi
