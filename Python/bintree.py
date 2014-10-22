@@ -22,14 +22,24 @@ class Node(object):
             else:
                 self.right = othernode
 
-    def inorderwalk(self):
-        "Yield this Node and all under it in increasing-value order."
+    def inOrderTraversal(self):
+        "Print out an inorder traversal."
         if self.left:
-            for x in self.left.inorderwalk():
+            for x in self.left.inOrderTraversal():
                 yield x
         yield self
         if self.right:
-            for x in self.right.inorderwalk():
+            for x in self.right.inOrderTraversal():
+                yield x
+    
+    def preOrderTraversal(self):
+        "Print out an inorder traversal."
+        yield self
+        if self.left:
+            for x in self.left.preOrderTraversal():
+                yield x
+        if self.right:
+            for x in self.right.preOrderTraversal():
                 yield x
     
     def __repr__(self):
@@ -60,7 +70,13 @@ if __name__ == "__main__":
 
     root = create_balanced_tree( mylist )
     print "Root:", root
+    # Print out an inorder traversal
     print "Inorder traversal:"
-    for x in root.inorderwalk():
+    for x in root.inOrderTraversal():
+        print x,
+    print
+    # Print out a preorder traversal
+    print "Preorder traversal:"
+    for x in root.preOrderTraversal():
         print x,
     print
