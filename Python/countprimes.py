@@ -24,9 +24,9 @@ if __name__ == "__main__":
     print "Total primes up to %d :: %d" % (num, count)
 
 # Performance numbers:
-# On N = 1,000,000
-# 
-#         Total primes: 78498
-# 
-#         real    76m26.615s
-#         user    76m17.474s
+#
+#    Total primes up to 1000000 :: 78498
+#
+#    real    0m2.753s
+#    user    0m0.359s
+#    sys     0m0.007s
