@@ -54,3 +54,14 @@ main = do
     let prime_flags = sieve 2 endsqrt number flags
     let count = V.length $ V.filter (\a -> a) prime_flags
     print count
+
+-- Performance numbers:
+--
+-- 100000000
+-- 5761455
+--
+-- real    54m5.325s
+-- user    53m56.066s
+-- sys     0m3.425s
+--
+-- NOTE: The performance is rather bad, so I'm obviously doing something really wrong here.

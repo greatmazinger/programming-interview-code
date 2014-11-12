@@ -30,3 +30,10 @@ if __name__ == "__main__":
 #    real    0m2.753s
 #    user    0m0.359s
 #    sys     0m0.007s
+# 
+#    100000000
+#    Total primes up to 100000000 :: 5761455
+#    
+#    real    0m49.965s
+#    user    0m46.383s
+#    sys     0m0.126s
