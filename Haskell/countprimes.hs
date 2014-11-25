@@ -11,15 +11,9 @@ sieve current endsqrt number flags =
         flags
     else
         if flags V.! (fromIntegral current) then
-            let
-                flags3 = sieve (current + 1) endsqrt number flags2
-            in
-                flags3
+            sieve (current + 1) endsqrt number flags2
         else
-            let
-                flags3 = sieve (current + 1) endsqrt number flags
-            in
-                flags3
+            sieve (current + 1) endsqrt number flags
     where
         flags2 = flags V.// [ (fromIntegral i, False) |
                               step <- [0..(((number-start) `div` current) + 1)],
