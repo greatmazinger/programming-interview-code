@@ -94,3 +94,7 @@ target/
 # Executables to ignore
 is_fibo
 find_digit
+
+# Scala
+*.log
+*.class
