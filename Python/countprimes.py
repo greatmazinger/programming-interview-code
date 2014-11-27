@@ -12,7 +12,7 @@ def count_primes( num ):
             while y <= num:
                 flags[y] = False
                 y = y + x
-    for x in xrange(len(flags)):
+    for x in xrange(2,len(flags)):
         if flags[x]:
             count += 1
     return count
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     stdin = fileinput.input()
     num = int(stdin.next())
     count = count_primes( num )
-    print "Total primes up to %d :: %d" % (num, count)
+    print count
 
 # Performance numbers:
 #
