@@ -1,35 +1,59 @@
-/* Longest increasing common subsequnce problem */
+/* Longest increasing common subsequnce problem 
+ * - this version uses the n*log n algorithm.
+ */
 object LICS {
 
     def main(args: Array[String]) {
         var seq: Vector[Int] = get_input().toVector
         var lics = get_LICS( seq )
+        println(lics)
         println(lics.length)
     }
 
     def get_LICS(seq: Vector[Int]): List[Int] = {
-        // This might be unnecessarily complex, but I'll go with it for now.
-        // newseq is a vector s.t.
-        //     newseq(i) => LICS that ends at seq(i)
-        //                  -- must use seq(i)
-        var lics = seq(0) :: List.empty
-        var newseq: Vector[ List[Int] ] = (seq(0) :: List.empty) +: Vector.fill(seq.length - 1)( List.empty )
-        for (x <- Range(1, seq.length)) {
-            // Look for longest subsequence:
-            //      newseq(t) ::: seq(x) 
-            //      s.t. newseq(t)(-1) <= seq(x)
+        var M: Array[Int] = Range(0, (seq.length + 1)).toArray
+        //   M[j] = stores the index k of the smallest value X[k] s.t.
+        //     there is an increasing subsequence of length j ending at X[k] on the range k ≤ i
+        //     -- (note we have j ≤ k ≤ i here, because
+        //        j represents the length of the increasing subsequence
+        //        k represents the index of its termination
+        var P: Array[Int] = Array.fill(seq.length)(-1)
+        //   P[k] = stores the index of the predecessor of X[k] in the longest increasing subsequence ending at X[k]
+        var L: Int = 0    // length of longest common subsequence found so far
+        // Let X = seq:
+        //  at any point in the algorithm, the sequence
+        //         X[M[1]], X[M[2]], ..., X[M[L]]
+        //  is nondecreasing.
+        //  Source: http://en.wikipedia.org/wiki/Longest_increasing_subsequence
+        for (x <- Range(0, seq.length)) {
             var longest = seq(x) :: List.empty
-            for (t <- Range(0, x)) {
-                if ((seq(t) <= seq(x)) && (newseq(t).length + 1 > longest.length)) {
-                    longest = newseq(t) ::: (seq(x) :: List.empty)
+            var lo: Int = 1
+            var hi: Int = L
+            while (lo <= hi) {
+                val mid = (lo + hi) / 2
+                if (seq( M(mid) ) < seq(x)) {
+                    lo = mid + 1
+                } else {
+                    hi = mid - 1
                 }
             }
-            newseq = newseq updated (x, longest)
-            if (longest.length > lics.length) {
-                lics = longest
+            // On first through this loop, goes straight here.
+            val newL = lo
+            // The predecessor of X[i] is the last index of the subsequence of length (newL - 1)
+            P(x) = M(newL - 1)
+            M(newL) = x
+            if (newL > L) {
+                L = newL
             }
         }
-        return lics
+        // Recreate the longest increasing subsequence
+        var lics = new Array[Int](L)
+        var k = M(L)
+        for (x <- ((L - 1) to 0 by -1)) {
+            lics(x) = seq(k)
+            k = P(k)
+        }
+        return lics.toList
     }
 
     def get_input() : List[Int] = {
