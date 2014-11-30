@@ -5,22 +5,26 @@ object LICS {
 
     def main(args: Array[String]) {
         val superseq: List[Int] = get_input()
+        val result = process_input(superseq, List.empty)
+        for (num <- result) {
+            print(num)
+            print(" ")
+        }
+        println("")
+    }
+
+    def process_input(superseq: List[Int], answers: List[Int]): List[Int] = {
+        if (superseq.isEmpty) {
+            return answers
+        }
         var (seq, rest) = superseq match {
             case num :: xs => xs.splitAt(num)
             case _         => (List.empty, List.empty)
         }
-        while (!seq.isEmpty) {
-            val lics = get_LICS( seq.toVector )
-            val (seq2, rest2) = superseq match {
-                case num :: xs => xs.splitAt(num)
-                case _         => (List.empty, List.empty)
-            }
-            println(lics)
-            println(lics.length)
-            // This is rather awkward, but I don't know how to do this better.
-            seq = seq2
-            rest = rest2
-        }
+        val lics = get_LICS( seq.toVector )
+        println(lics)
+        println(lics.length)
+        return process_input(rest, answers) :+ lics.length
     }
 
     def get_LICS(seq: Vector[Int]): List[Int] = {
