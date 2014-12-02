@@ -1,7 +1,7 @@
 /* Longest increasing common subsequnce problem 
  * - this version uses the n*log n algorithm.
  */
-object LICS {
+object LIS {
 
     def main(args: Array[String]) {
         val superseq: List[Int] = get_input()
@@ -21,13 +21,13 @@ object LICS {
             case num :: xs => xs.splitAt(num)
             case _         => (List.empty, List.empty)
         }
-        val lics = get_LICS( seq.toVector )
-        println(lics)
-        println(lics.length)
-        return process_input(rest, answers) :+ lics.length
+        val lis = get_LIS( seq.toVector )
+        println(lis)
+        println(lis.length)
+        return process_input(rest, answers) :+ lis.length
     }
 
-    def get_LICS(seq: Vector[Int]): List[Int] = {
+    def get_LIS(seq: Vector[Int]): List[Int] = {
         var M: Array[Int] = Range(0, (seq.length + 1)).toArray
         //   M[j] = stores the index k of the smallest value X[k] s.t.
         //     there is an increasing subsequence of length j ending at X[k] on the range k ≤ i
@@ -64,13 +64,13 @@ object LICS {
             }
         }
         // Recreate the longest increasing subsequence
-        var lics = new Array[Int](L)
+        var lis = new Array[Int](L)
         var k = M(L)
         for (x <- ((L - 1) to 0 by -1)) {
-            lics(x) = seq(k)
+            lis(x) = seq(k)
             k = P(k)
         }
-        return lics.toList
+        return lis.toList
     }
 
     def get_input() : List[Int] = {
