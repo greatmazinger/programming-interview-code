@@ -15,10 +15,13 @@ object LICS2 {
         //                  -- must use seq(i)
         var lics = seq(0) :: List.empty
         var newseq: Vector[ List[Int] ] = (seq(0) :: List.empty) +: Vector.fill(seq.length - 1)( List.empty )
+        // Note: +: is the Vector prepend operator. It's the same for list, but we're prepending
+        //       to a Vector here.
         for (x <- Range(1, seq.length)) {
             // Look for longest subsequence:
             //      newseq(t) ::: seq(x) 
             //      s.t. newseq(t)(-1) <= seq(x)
+            // Note: ::: is the concatenation of sequences
             var longest = seq(x) :: List.empty
             for (t <- Range(0, x)) {
                 if ((seq(t) <= seq(x)) && (newseq(t).length + 1 > longest.length)) {
