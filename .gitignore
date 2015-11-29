@@ -94,6 +94,7 @@ target/
 # Executables to ignore
 is_fibo
 find_digit
+Haskell/countprimes*
 
 # Scala
 *.log
