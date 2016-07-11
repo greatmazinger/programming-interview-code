@@ -99,3 +99,8 @@ Haskell/countprimes*
 # Scala
 *.log
 *.class
+
+# General
+*debug*
+gtest-1.7.0
+build-gtest
