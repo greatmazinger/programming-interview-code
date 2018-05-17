@@ -15,4 +15,4 @@ if __name__ == "__main__":
         if p > num:
             break
         count += 1
-print count
+    print count
