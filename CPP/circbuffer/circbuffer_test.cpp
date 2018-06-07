@@ -1,7 +1,9 @@
 #include "circbuffer.hpp"
+#include <iostream>
 
 int main()
 {
-    CircularBuffer buf(10);
+    std::cout << "circbuffer_test:" << std::endl;
+    CircularBuffer buf{10};
     return 0;
 }
