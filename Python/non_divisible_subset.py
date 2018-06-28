@@ -28,6 +28,7 @@ def BronKerbosch( R, P, X, g ):
         X.add(node)
 
 
+# TODO: This can probably be optimized.
 def choose_pivot( P, X, g ):
     nodes = list(P | X)
     pivot = nodes[0]
