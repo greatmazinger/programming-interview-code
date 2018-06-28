@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class loopmap {  
@@ -17,6 +18,16 @@ class loopmap {
             .forEach(
                 entry -> {
                     System.out.println("stream: " + entry.getKey() + " -> " + entry.getValue());
+                }
+            );
+        // Method 3: Java 8 stream + collect
+        map.entrySet().stream()
+            .map( entry -> entry.getValue())
+            .collect(Collectors.toList())
+            .stream()
+            .forEach(
+                x -> {
+                    System.out.println("stream to list: " + x);
                 }
             );
     }
