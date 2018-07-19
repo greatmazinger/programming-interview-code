@@ -1,7 +1,8 @@
+#include <iostream>
 #include <map>
 #include <vector>
 
-class Solution {
+class TwoSum {
 public:
     std::vector<int> twoSum(std::vector<int> &nums, int target) {
         std::vector<int> result;
@@ -61,5 +62,20 @@ public:
 
 int main(int argc, char** argv)
 {
+    TwoSum ts;
+    std::vector<int> nums;
+    int target = 0;
+    nums.push_back(0);
+    nums.push_back(4);
+    nums.push_back(3);
+    nums.push_back(0);
+    auto result = ts.twoSum(nums, target);
+    std::cout << "[";
+    for (auto iter = result.begin();
+         iter != result.end();
+         iter++) {
+        std::cout << *iter << "  ";
+    }
+    std::cout << "]" << std::endl;
     return 0;
 }
