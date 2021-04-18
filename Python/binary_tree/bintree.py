@@ -45,6 +45,7 @@ class Node(object):
     def __repr__(self):
         return str(self.value)
 
+# srclist is a sorted list.
 def create_balanced_tree( srclist = None ):
     if len(srclist) == 0:
         return None
