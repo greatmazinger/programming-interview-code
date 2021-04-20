@@ -1,0 +1,16 @@
+#!/usr/bin/lua
+local argparse = require "lua/argparse"
+
+local parser = argparse("runPkg", "A mock for testing.")
+parser:argument("input", "Input file.")
+parser:option("-a --appname", "Application name.", "APPNAME")
+parser:option("-t --type", "Application type.", "APPTYPE")
+print "MOCK: runPkg-LUA"
+
+local args = parser:parse()
+
+local authnsh_path = "/mnt/NVM/src/programming-interview-code/Java/procexample/lua/authNShell.sh"
+local args = "--args 'CMD-TODO ENV'"
+local cmd = string.format("%s %s", authnsh_path, args)
+
+os.execute(cmd)
