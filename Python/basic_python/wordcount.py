@@ -25,16 +25,16 @@ def clean_words( words ):
     return result
 
 def main():
-    print "Running", sys.argv[0]
+    print("Running", sys.argv[0])
     if len(sys.argv) < 2:
         filename = "part7.txt"
-        print "Using hardcoded test file: %s" % filename
+        print("Using hardcoded test file: %s" % filename)
     else:
         filename = sys.argv[1]
-        print "Using supplied file: %s" % filename
+        print("Using supplied file: %s" % filename)
     # Note: sys.argv[0] is always the program filename
     if not os.path.isfile(filename):
-        print "File %s not found." % filename
+        print("File %s not found." % filename)
         exit(2)
     counter = defaultdict( int )
     with open(filename, "rb") as filehandle:
@@ -48,7 +48,7 @@ def main():
             for x in words:
                 counter[x] = counter[x] + 1
         for k, v in counter.iteritems():
-            print k, "->", v
+            print(k, "->", v)
 
 if __name__ == "__main__":
     main()

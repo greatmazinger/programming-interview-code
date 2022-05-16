@@ -10,4 +10,4 @@ while len(randset) < 21:
 result = list(randset)
 result.sort()
 
-print result
+print(result)
