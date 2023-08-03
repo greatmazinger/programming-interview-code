@@ -21,7 +21,7 @@ for line in lines:
             else:
                 cur += 1
         removed = len(sortline) - 1 if len(sortline) > 0 else 0
-        halfword =  [ word[i] for i in xrange(0, len(word), 2) ]
+        halfword =  [ word[i] for i in range(0, len(word), 2) ]
         perms = permutations(halfword)
         tmplist = []
         for p in perms:
@@ -30,5 +30,4 @@ for line in lines:
         ptotal = len(tmpset)
         result.append((removed, ptotal))
 for x in result:
-    print "%d,%d" % (x[0], x[1])
-print
+    print("%d,%d" % (x[0], x[1]))
