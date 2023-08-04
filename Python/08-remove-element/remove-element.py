@@ -1,4 +1,6 @@
-def removeElement(self, nums: List[int], val: int) -> int:
+from typing import List
+
+def removeElement(nums: List[int], val: int) -> int:
     # look for not val at end -> cur
     # while not val cur or cur > 0
     # sptr at start, look for val
@@ -25,3 +27,18 @@ def removeElement(self, nums: List[int], val: int) -> int:
     while k < len(nums) and nums[k] != val:
         k += 1
     return k
+
+def test1():
+    print("Running TEST 1:")
+    nums = [0, 1, 2, 2, 3, 0, 4, 2]
+    val = 2
+    expected = [ 0, 0, 1, 3, 4]
+    k = removeElement(nums, val)
+    result = nums[:k]
+    result.sort()
+    assert  result == expected
+    print(" - TEST 1 successful.")
+
+
+if __name__ == "__main__":
+    test1()
