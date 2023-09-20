@@ -1,3 +1,5 @@
+from typing import List, Optional, Tuple
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -5,12 +7,15 @@ class TreeNode:
         self.left = left
         self.right = right
 
+def createBST(spec: List) -> TreeNode:
+    return TreeNode(0, None, None)
+
 def kthSmallest(root: Optional[TreeNode], k: int) -> int:
     result = countForKthSmallest(root, k, -1) # -1 as a sentinel value to indicate we're
     # looking for the smallest to start counting
     return result[2]
 
-def countForKthSmallest(self, root: TreeNode, k: int, count: int) -> Tuple[int, bool, int]:
+def countForKthSmallest(root: TreeNode, k: int, count: int) -> Tuple[int, bool, int]:
     # root can't be None.
     if count == -1:
         # Still looking:
@@ -22,10 +27,10 @@ def countForKthSmallest(self, root: TreeNode, k: int, count: int) -> Tuple[int, 
                 return (newcount, found, root.val)
             else:
                 # Go right
-                return self.countForKthSmallest(root.right, k, newcount)
+                return countForKthSmallest(root.right, k, newcount)
         else:
             # Still looking...
-            result = self.countForKthSmallest(root.left, k, count)
+            result = countForKthSmallest(root.left, k, count)
             found = result[1]
             if found:
                 return result
@@ -34,11 +39,11 @@ def countForKthSmallest(self, root: TreeNode, k: int, count: int) -> Tuple[int, 
                 return (count, count == k, root.val)
             else:
                 # Go right
-                return self.countForKthSmallest(root.right, k, count)
+                return countForKthSmallest(root.right, k, count)
     else:
         # Still looking...
         if root.left:
-            result = self.countForKthSmallest(root.left, k, count)
+            result = countForKthSmallest(root.left, k, count)
             found = result[1]
             if found:
                 return result
@@ -48,7 +53,7 @@ def countForKthSmallest(self, root: TreeNode, k: int, count: int) -> Tuple[int, 
             return (count, count == k, root.val)
         else:
             # Go right
-            return self.countForKthSmallest(root.right, k, count)
+            return countForKthSmallest(root.right, k, count)
 
 def test1():
     assert False
